@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { removeContact } from "../redux/contactActions";
-import { editContact } from "../redux/contactActions";
+import { removeContact, editContact } from "../redux/contactActions";
 import Modal from "react-awesome-modal";
 import { Button, FormGroup, Label, Input, Form } from 'reactstrap'
 import { FaTrash } from 'react-icons/fa';

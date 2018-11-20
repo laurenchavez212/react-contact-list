@@ -4,7 +4,6 @@ import { addContact } from '../redux/contactActions';
 import { connect } from 'react-redux';
 import AddContactForm from './AddContactForm'
 import { FaPlus, FaAngleDoubleUp } from "react-icons/fa";
-
 import {
     Navbar,
     NavbarBrand,

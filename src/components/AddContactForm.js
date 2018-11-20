@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Form, Input } from "reactstrap";
 import { connect } from "react-redux";
 import { addContact } from "../redux/contactActions";
-import { bindActionCreators } from "redux";
 
 class AddContactForm extends React.Component {
   state = {
@@ -12,13 +11,15 @@ class AddContactForm extends React.Component {
     email: "",
     company: "",
     address: "",
-    photo_url: "http://placehold.it/100x100"
+    photo_url:
+      "https://4.bp.blogspot.com/-ZzOpik5sFZg/UleI27zMJyI/AAAAAAAAHgs/nQEZnjiSn9M/s1600/profileicon.jpg"
   };
 
+// Renders the Add Conatct Form OnClick
   onClick(e) {
     this.setState({ showAddContactForm: !this.state.showAddContactForm });
   }
-
+// On Form submit alert will confirm contact add and set 'addContact' action to new state
   handleSubmit = e => {
     e.preventDefault();
     this.props.addContact(this.state);
@@ -26,12 +27,14 @@ class AddContactForm extends React.Component {
   };
 
   render() {
-    return (
+      return (
+        // Form onSubmit will preform handleSubmit action above
       <Form onSubmit={this.handleSubmit}>
         <Input
           type="text"
           id="nameField"
-          placeholder="Name..."
+                  placeholder="Name..."
+                //   When typing state will be updated 
           onChange={e => this.setState({ name: e.target.value })}
           autoFocus
         />
@@ -65,15 +68,6 @@ class AddContactForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      addContact
-    },
-    dispatch
-  );
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(AddContactForm);
+
+export default connect(null,{addContact})(AddContactForm);

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { removeContact, editContact } from "../redux/contactActions";
 import Modal from "react-awesome-modal";
 import { Button, FormGroup, Label, Input, Form } from 'reactstrap'
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaEdit } from "react-icons/fa";
 
 class Contact extends React.Component {
     constructor(props) {
@@ -64,15 +64,16 @@ class Contact extends React.Component {
         <td>{this.props.contact.company}</td>
         <td>{this.props.contact.address}</td>
         <td>
-            {/* Remove Contact */}
-          <Button
-            onClick={() => this.props.removeContact(this.props.contact.id)}>
+          {/* Remove Contact */}
+          <Button onClick={() => this.props.removeContact(this.props.contact.id)}>
             <FaTrash />
           </Button>
         </td>
         <td>
-            {/* Edit Contact */}
-          <Button onClick={() => this.modal()}>Edit</Button>
+          {/* Edit Contact */}
+          <Button onClick={() => this.modal()}>
+            <FaEdit />
+          </Button>
         </td>
 
         {/* Edit Contact Modal */}
@@ -97,8 +98,8 @@ class Contact extends React.Component {
             <FormGroup>
               <Label for="addressField">Address</Label>
               <Input id={this.props.contact.address} type="text" value={this.state.editContact.address} onChange={this.handleEditChange} name="address" />
-                </FormGroup>
-                {/* Closes Modal OnSubmit */}
+            </FormGroup>
+            {/* Closes Modal OnSubmit */}
             <Button onClick={() => this.modal()} type="submit">
               Submit
             </Button>

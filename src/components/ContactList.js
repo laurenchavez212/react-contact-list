@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { Table } from 'reactstrap';
 
 
-
 const ContactList = (props) => {
-    console.log(props)
+    // While props are loading..
     if (!props.contacts) {
         return <div>Loading...</div>
     } else {
-        let listOfContacts = props.contacts ? props.contacts.map(contact => <Contact key={contact.id} contact={contact} />) : <div>Loading...</div>
+        // if contacts load
+        let listOfContacts = props.contacts ? props.contacts.map(contact => <Contact key={contact.id} contact={contact} />) : <div>No Contacts!</div>
 
         return (
             <Table>
@@ -31,11 +31,7 @@ const ContactList = (props) => {
             </Table>
         )
     }
-
-
-
 }
-
 
 
 const mapStateToProps = state => ({

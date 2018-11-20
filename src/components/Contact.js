@@ -22,19 +22,14 @@ class Contact extends React.Component {
             }
         }
     };
-
-  openModal() {
+// Opens and closes modal by changing 'visible' state to opposite of current
+  modal() {
     this.setState({
       visible: !this.state.visible
     });
   }
 
-  closeModal() {
-    this.setState({
-      visible: false
-    });
-  }
-
+    // While typing in input local state will update to target
     handleEditChange = e => {
         this.setState({
             ...this.state,
@@ -44,7 +39,7 @@ class Contact extends React.Component {
             }
         });
     };
-
+// On Form Submit editCOntact action will take in current local state and set to application state
     handleEditSubmit = e => {
         e.preventDefault();
         return this.props.editContact(this.state.editContact);
@@ -69,18 +64,19 @@ class Contact extends React.Component {
         <td>{this.props.contact.company}</td>
         <td>{this.props.contact.address}</td>
         <td>
+            {/* Remove Contact */}
           <Button
-            onClick={() => this.props.removeContact(this.props.contact.id)}
-          >
+            onClick={() => this.props.removeContact(this.props.contact.id)}>
             <FaTrash />
           </Button>
         </td>
         <td>
-          <Button onClick={() => this.openModal()}>Edit</Button>
+            {/* Edit Contact */}
+          <Button onClick={() => this.modal()}>Edit</Button>
         </td>
 
         {/* Edit Contact Modal */}
-        <Modal className="editModal" visible={this.state.visible} effect="fadeInRight" width="400" height="470" onClickAway={() => this.closeModal()}>
+        <Modal className="editModal" visible={this.state.visible} effect="fadeInRight" width="400" height="470" onClickAway={() => this.modal()}>
           <Form onSubmit={this.handleEditSubmit}>
             <FormGroup>
               <Label for="nameField">Name</Label>
@@ -101,8 +97,9 @@ class Contact extends React.Component {
             <FormGroup>
               <Label for="addressField">Address</Label>
               <Input id={this.props.contact.address} type="text" value={this.state.editContact.address} onChange={this.handleEditChange} name="address" />
-            </FormGroup>
-            <Button onClick={() => this.openModal()} type="submit">
+                </FormGroup>
+                {/* Closes Modal OnSubmit */}
+            <Button onClick={() => this.modal()} type="submit">
               Submit
             </Button>
           </Form>

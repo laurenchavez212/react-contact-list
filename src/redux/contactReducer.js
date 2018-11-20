@@ -11,6 +11,7 @@ let initialState = [];
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_CONTACTS:
+    // fetches contacts in alphabetical order
       return action.payload.sort(function (a, b) {
         if (a.name < b.name) { return -1; }
         if (a.name > b.name) { return 1; }
@@ -21,7 +22,8 @@ export default (state = initialState, action) => {
     case REMOVE_CONTACT:
       return state.filter(contact => contact.id !== action.payload);
     case EDIT_CONTACT:
-      let theOthers = state.filter(contact => contact.id != action.payload.id);
+      // Edits the contact then returns in alphabetical order
+      let theOthers = state.filter(contact => contact.id !== action.payload.id);
       return [...theOthers, action.payload].sort(function(a, b) {
         if (a.name < b.name) {
           return -1;

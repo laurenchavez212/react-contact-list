@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { addContact } from '../redux/contactActions';
 import { connect } from 'react-redux';
 import AddContactForm from './AddContactForm'
+import { FaPlus, FaAngleDoubleUp } from "react-icons/fa";
 
 import {
     Navbar,
@@ -12,36 +13,33 @@ import {
 } from 'reactstrap';
 
 class TopNav extends React.Component {
-    state = {
-        showForm: false
-    }
+  state = {
+    showAddContactForm: false
+  };
 
-    onClick(e) {
-        e.preventDefault();
-        this.setState({
-            showForm: !this.state.showForm
-        })
-    }
+  onClick(e) {
+    this.setState({ showAddContactForm: !this.state.showAddContactForm });
+  }
 
-    render() {
-        return (
-            <div>
-                <Navbar color="light" light expand="md">
-                    <div className="container">
-                        <NavbarBrand href="/">
-                            Contact List
-            </NavbarBrand>
-                        <NavItem>
-                            <Button onClick={this.onClick.bind(this)}>Add Contact</Button>
-                        </NavItem>
-                    </div>
-                </Navbar>
-                <div className="container">
-                    {this.state.showForm && < AddContactForm />}
-                </div>
-            </div>
-        );
-    }
+  render() {
+    return <div>
+        <Navbar color="light" light expand="md">
+          <div className="container">
+            <NavbarBrand href="/">Contact List</NavbarBrand>
+            <NavItem>
+            <a href="#" class="btn btn-info" onClick={this.onClick.bind(this)}><FaPlus /> Add Contact</a>
+            </NavItem>
+          </div>
+        </Navbar>
+        <div className="container">
+          {this.state.showAddContactForm && <div>
+              <AddContactForm />
+              <br />
+          <Button onClick={this.onClick.bind(this)}><FaAngleDoubleUp /></Button>
+            </div>}
+        </div>
+      </div>;
+  }
 }
 const mapDispatchToProps = dispatch => bindActionCreators({
     addContact

@@ -21,8 +21,8 @@ const ContactList = (props) => {
                         <th>Email</th>
                         <th>Company</th>
                         <th>Address</th>
-                        <th>Delete</th>
-                        <th>Edit</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
